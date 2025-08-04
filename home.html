@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sai Indraja Aitha | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --bg-dark: #1e1e2f;
+      --glass: rgba(255, 255, 255, 0.1);
+      --text: #ffffff;
+      --accent: #00FFD1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #130f40, #30336b, #192a56);
+      color: var(--text);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(12px);
+      z-index: 999;
+      padding: 1rem 0;
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+      transform: scale(1.1);
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 1rem 2rem;
+    }
+
+    .glass-container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 3rem;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+      max-width: 1000px;
+      margin: 4rem auto;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+      font-size: larger;
+    }
+
+    .glass-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glow {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent), 0 0 15px var(--accent);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent);
+      color: #000;
+      border-radius: 25px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+    }
+
+    section {
+      padding: 4rem 1rem;
+    }
+
+    h2 {
+      color: var(--accent);
+      text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .resume-embed {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 2.5rem;
+      color: #000;
+      box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+    }
+
+    .resume-embed img {
+      width: 100%;
+      border-radius: 12px;
+      margin-top: 1rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 4rem;
+      background-color: rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      max-width: 1100px;
+      margin: 4rem auto;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 1.4rem;
+      font-size: 1.15rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #222;
+      color: #fff;
+    }
+
+    .glow-btn {
+      background-color: var(--accent);
+      color: #000;
+      font-weight: bold;
+      padding: 1rem 1.7rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .glow-btn:hover {
+      transform: scale(1.07);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills-list li {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    }
+
+    .skills-list img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certificates">Certificates</a></li>
+      <li><a href="#Project">Project</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#resume">Resume</a></li>
+      
+    </ul>
+  </nav>
+
+  <header id="home">
+    <div class="glass-container show">
+      <h1>Hello, I'm <span class="glow">Aitha Sai Indraja</span></h1>
+      <p>ECE Student | Software Developer</p>
+      <a href="#about" class="btn">Explore More</a>
+    </div>
+  </header>
+
+  <section id="about" class="glass-container">
+    <h2>About Me</h2>
+    <p>
+  I am a final-year <strong>Electronics & Communication Engineering</strong> student passionate about <strong>software development</strong> and emerging technologies. My core strengths lie in <strong>Python, C, HTML, CSS, Django</strong>, and intuitive <strong>UI/UX design using Figma</strong>. <br><br>
+
+  I take pride in my ability to bridge the gap between <strong>software and hardware domains</strong>, allowing me to work seamlessly on both web development projects and embedded systems. Whether it’s building dynamic web applications or working with core electronics like <strong>VLSI</strong> and <strong>embedded systems</strong>, I am always eager to explore and contribute. <br><br>
+
+  I am a quick learner, a creative problem-solver, and highly motivated to take on challenges that help me grow as a developer and engineer. My projects reflect a blend of strong technical skills and a user-centered design mindset. <br><br>
+
+  Currently, I am seeking opportunities to apply my knowledge in real-world applications, collaborate with industry professionals, and continue learning in a fast-paced, innovative environment.
+</p>
+  </section>
+  
+
+  <section id="education">
+  <div class="glass-container">
+    <h2>Education</h2>
+    <ul class="edu-list">
+      <li>
+        <strong>B.Tech:</strong><br>
+        SVR Engineering College, Nandyal<br>
+        2022–2026<br>
+        GPA: 8.7
+      </li>
+      <li>
+        <strong>Intermediate:</strong><br>
+        Narayana Junior College, Nandyal<br>
+        2020–2022<br>
+        GPA: 8.4
+      </li>
+      <li>
+        <strong>SSC:</strong><br>
+        Sri Ravindra (EM) High School, Nandyal<br>
+        2020<br>
+        GPA: 9.7
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+  <section id="skills" class="glass-container">
+    <h2>Skills</h2>
+    <ul class="skills-list">
+      <li><img src="download.png" alt="Python"><br>Python - 90%</li>
+      <li><img src="c logo.png" alt="C"><br>C Language - 90%</li>
+      <li><img src="html.png" alt="HTML"><br>HTML - 85%</li>
+      <li><img src="css.png" alt="CSS"><br>CSS - 85%</li>
+      <li><img src="django.png" alt="Django"><br>Django - 75%</li>
+      <li><img src="figma.png" alt="Figma"><br>Figma - 80%</li>
+      <li><img src="vlsi.jpg" alt="VLSI"><br>VLSI - 80%</li>
+      <li><img src="embedded.png" alt="Embedded Systems"><br>Embedded Systems - 80%</li>
+      <li><img src="sql.png" alt="SQL.png"alt="SQL"><br>SQL - 80%</li>
+    </ul>
+  </section>
+
+<style>
+  .certificate-entry {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cert-thumb {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 0.8rem;
+  }
+
+  .certificate-entry h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+  }
+
+  .certificate-entry iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  }
+</style>
+
+<style>
+  .certificate-entry {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .certificate-entry h3 {
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+  }
+
+  .certificate-entry iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+  }
+</style>
+
+<style>
+  .certificate-entry {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .certificate-entry h3 {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    color: #0ff;
+    text-shadow: 0 0 5px #0ff;
+  }
+
+  .certificate-entry iframe {
+    width: 100%;
+    height: 500px; /* Medium height */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+</style>
+
+<section id="certificates">
+  <section id="certifications">
+  <h2 style="text-align: center;">My Certifications</h2>
+  <div class="certificates-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px;">
+    
+    <!-- Certificate 1:Data Science with Python  -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai1_page-0001.jpg" alt="NPTEL Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Transducers for Instrumentation</h3>
+        <p>NPTEL</p>
+      </div>
+    </div>
+
+    <!-- Certificate 2: Introduction to Artificial Intelligence -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai4_page-0001.jpg" alt="UiPath Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Hack-a-bot</h3>
+        <p>UiPath – SVR College</p>
+      </div>
+    </div>
+    <!-- Certificate 3:Getting Started with AI   -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai3_page-0001.jpg" alt="UiPath Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Hack-a-bot</h3>
+        <p>UiPath – SVR College</p>
+      </div>
+    </div>
+    <!-- Certificate 4: Internship on AI & ML -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai2_page-0001.jpg" alt="UiPath Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Hack-a-bot</h3>
+        <p>UiPath – SVR College</p>
+      </div>
+    </div>
+    <!-- Certificate 5:VLSI Certification -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai5_page-0001.jpg" alt="UiPath Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Hack-a-bot</h3>
+        <p>UiPath – SVR College</p>
+      </div>
+    </div>
+    <!-- Certificate 6:Transducers for Instrumentation -->
+    <div class="certificate-card" style="background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 300px;">
+      <img src="sai6_page-0001 (1).jpg" alt="UiPath Certificate" style="width: 100%; border-radius: 8px;">
+      <div class="certificate-info" style="margin-top: 10px; text-align: center;">
+        <h3 style="color: var(--primary); margin: 5px 0;">Hack-a-bot</h3>
+        <p>UiPath – SVR College</p>
+      </div>
+    </div>
+
+
+
+
+  </div>
+</section>
+<section id="projects" class="glass-container">
+  <h2>Projects</h2>
+
+  <div class="project">
+    <h3>Portfolio Website</h3>
+    <p>
+      A fully responsive personal portfolio website to showcase my profile, skills, education, certificates, and projects.
+    </p>
+    <p><strong>Tools:</strong> HTML, CSS, JavaScript</p>
+    <p><a href="https://github.com/saiindraja/portfolio" target="_blank">View on GitHub</a></p>
+  </div>
+
+  <div class="project">
+    <h3>Student Management System</h3>
+    <p>
+      A Figma project
+    </p>
+    <p><strong>Tools:</strong> Figma</p>
+    <p><a href="https://github.com/saiindraja/student-management" target="_blank">View on GitHub</a></p>
+  </div>
+
+  <div class="project">
+    <h3>Clean Tech:Waste Management with Transfer Learning</h3>
+    <p>
+      Its an AIML model which is programmed using transfer learning techniques
+    </p>
+    <p><strong>Tools:</strong> HTML,Python,CSS,Jupter notebook</p>
+    <p><a href="https://github.com/saiindraja/landing-page" target="_blank">View on GitHub</a></p>
+  </div>
+</section>
+
+<style>
+  #projects .project {
+    background: rgba(255, 255, 255, 0.07);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  #projects h3 {
+    color: #00FFD1;
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+  }
+
+  #projects p {
+    margin: 0.5rem 0;
+    line-height: 1.6;
+  }
+
+  #projects a {
+    color: #ffd700;
+    text-decoration: underline;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+  <section id="contact" class="glass-container">
+    <h2>Contact</h2>
+    <p><strong>Email:</strong> <a href="mailto:saiindrajaaitha@gmail.com">saiindrajaaitha@gmail.com</a></p>
+    <p><strong>Phone:</strong> 8143693384</p>
+    <p><strong>GitHub:</strong> <a href="https://github.com/saiindraja">github.com/saiindraja</a></p>
+    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sai-indraja-aitha-5b20752bb">linkedin.com/in/sai-indraja-aitha</a></p>
+    <p><strong>Credly:</strong> <a href="https://www.credly.com/users/sai-indraja-aitha">credly.com/users/sai-indraja-aitha</a></p>
+
+    <form class="contact-form" action="mailto:saiindrajaaitha@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="👤 Your Name" required>
+      <input type="email" name="email" placeholder="📧 Your Email" required>
+      <textarea name="message" rows="6" placeholder="💬 Type your message here..." required></textarea>
+      <button type="submit" class="glow-btn">🚀 Send Message</button>
+    </form>
+  </section>
+
+  <section id="resume" class="glass-container">
+    <h2>Resume</h2>
+    <div style="text-align:center;">
+      <a class="btn" href="indraja resume (2).pdf" download>Download Resume</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Sai Indraja Aitha | Designed with 💙</p>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.glass-container');
+    function revealOnScroll() {
+      sections.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('show');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
